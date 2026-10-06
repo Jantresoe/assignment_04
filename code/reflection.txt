@@ -1,4 +1,4 @@
-Write your reflection here.
+the assiagnemnt was very similiar to the 2nd assiagnemnt but with the addition of streamlit so the difficult was much high but not something i could complete. what i mostly learned was how important it is to carefully follow the required column names, widget keys, and calculations because small differences can cause tests to fail. Overall, debugging the errors helped me become more comfortable reading test results and using them to improve my code.
 
 See reflection.md for what makes a good reflection — be specific, use the
 terminology from this assignment (lineage, grain, element function, Series.apply,
