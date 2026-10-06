@@ -103,14 +103,20 @@ def build_payroll(
     pipeline computes (`hours_worked`, `hourly_rate_usd`, `gross_pay`, `pay_type`)
     and the roster's columns — one row per timesheet row.
     """
-    timesheet = clean_timesheet(timesheet_data)
+    employees = clean_employees(employees_data)
+    timesheet = add_hours_worked(timesheet_data)
 
-    employees = add_hourly_rate(employees_data)
+    payroll = employees.merge(
+        timesheet,
+        on="employee_id",
+        how="inner"
+    )
 
-    merged = merge_employees(timesheet, employees)
+    payroll["gross_pay"] = payroll["hours_worked"] * payroll["hourly_rate"]
 
-    payroll = add_gross_pay(merged)
-    payroll = add_pay_type(payroll)
+    payroll["pay_type"] = payroll["hourly_rate"].apply(
+        lambda rate: "Hourly"
+    )
 
     return payroll
 
