@@ -105,9 +105,13 @@ def build_payroll(
     """
     cleaned_timesheet = clean_timesheet(timesheet_data)
     cleaned_employees = clean_employees(employees_data)
+
     merged = merge_employees(cleaned_timesheet, cleaned_employees)
-    payroll = add_gross_pay(merged)
+
+    payroll = add_hours_worked(merged)
+    payroll = add_gross_pay(payroll)
     payroll = add_pay_type(payroll)
+
     return payroll
 
 
